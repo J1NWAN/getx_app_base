@@ -5,6 +5,7 @@ import 'package:getx_app_base/app/core/theme/theme_controller.dart';
 import 'package:getx_app_base/app/data/services/storage_service.dart';
 import 'package:getx_app_base/app/core/theme/app_themes.dart';
 import 'package:getx_app_base/app/modules/theme_test/theme_test_page.dart';
+import 'package:getx_app_base/app/routes/app_pages.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -23,11 +24,12 @@ class MyApp extends StatelessWidget {
     final themeController = Get.find<ThemeController>();
 
     return GetMaterialApp(
-      title: '테마 테스트',
+      title: '앱 이름',
+      initialRoute: AppPages.INITIAL,
+      getPages: [...AppPages.routes],
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
       themeMode: themeController.themeMode,
-      home: const ThemeTestPage(),
     );
   }
 }
