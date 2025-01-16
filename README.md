@@ -9,6 +9,13 @@ GetX를 사용한 앱 기본 틀 작성
     - theme/
       - theme_controller.dart
       - app_themes.dart
+    - widgets/
+      - buttons/
+        - custom_button.dart
+      - inputs/
+        - custom_text_field.dart
+      - common/
+        - loading_indicator.dart
   - data/
     - services/
       - storage_service.dart
