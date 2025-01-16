@@ -6,6 +6,8 @@ GetX를 사용한 앱 기본 틀 작성
 
 - app/
   - core/
+    - controllers/
+      - language_controller.dart
     - theme/
       - theme_controller.dart
       - app_themes.dart
@@ -16,6 +18,14 @@ GetX를 사용한 앱 기본 틀 작성
         - custom_text_field.dart
       - common/
         - loading_indicator.dart
+      - dialogs/
+        - confirm_dialog.dart
+        - loading_dialog.dart
+    - translations/
+      - app_translations.dart
+      - languages/
+        - en_us.dart
+        - ko_kr.dart
   - data/
     - services/
       - storage_service.dart
