@@ -7,12 +7,15 @@ import 'package:getx_app_base/app/core/theme/app_themes.dart';
 import 'package:getx_app_base/app/modules/theme_test/theme_test_page.dart';
 import 'package:getx_app_base/app/routes/app_pages.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:getx_app_base/app/core/translations/app_translations.dart';
+import 'package:getx_app_base/app/core/controllers/language_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   Get.put(StorageService());
   Get.put(ThemeController());
+  Get.put(LanguageController());
   runApp(const MyApp());
 }
 
@@ -22,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeController = Get.find<ThemeController>();
+    final languageController = Get.find<LanguageController>();
 
     return GetMaterialApp(
       title: '앱 이름',
@@ -30,6 +34,9 @@ class MyApp extends StatelessWidget {
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
       themeMode: themeController.themeMode,
+      translations: AppTranslations(),
+      locale: languageController.locale,
+      fallbackLocale: const Locale('ko', 'KR'),
     );
   }
 }
