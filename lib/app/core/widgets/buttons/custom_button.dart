@@ -11,6 +11,19 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double borderRadius;
 
+  /*
+   * 커스텀 버튼 위젯
+   * 
+   * @param text 버튼 텍스트
+   * @param onPressed 버튼 클릭 이벤트
+   * @param isLoading 로딩 상태
+   * @param isFullWidth 너비 옵션
+   * @param backgroundColor 배경색
+   * @param textColor 텍스트 색상
+   * @param height 높이
+   * @param width 너비
+   * @param borderRadius 라운드 옵션
+  */
   const CustomButton({
     super.key,
     required this.text,

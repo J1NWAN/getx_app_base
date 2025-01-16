@@ -6,6 +6,14 @@ class LoadingIndicator extends StatelessWidget {
   final double strokeWidth;
   final String? message;
 
+  /*
+   * 로딩 인디케이터 위젯
+   * 
+   * @param color 색상
+   * @param size 크기
+   * @param strokeWidth 선 두께
+   * @param message 메시지
+  */
   const LoadingIndicator({
     super.key,
     this.color,

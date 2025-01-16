@@ -11,6 +11,17 @@ class ConfirmDialog extends StatelessWidget {
   final VoidCallback? onCancel;
   final bool isDismissible;
 
+  /*
+   * 확인 다이얼로그 위젯
+   * 
+   * @param title 제목
+   * @param message 메시지
+   * @param confirmText 확인 텍스트
+   * @param cancelText 취소 텍스트
+   * @param onConfirm 확인 클릭 이벤트
+   * @param onCancel 취소 클릭 이벤트
+   * @param isDismissible 다이얼로그 닫기 가능 여부
+   */
   const ConfirmDialog({
     super.key,
     required this.title,

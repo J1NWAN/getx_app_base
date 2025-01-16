@@ -5,6 +5,11 @@ import '../common/loading_indicator.dart';
 class LoadingDialog extends StatelessWidget {
   final String? message;
 
+  /*
+   * 로딩 다이얼로그 위젯
+   * 
+   * @param message 메시지
+   */
   const LoadingDialog({
     super.key,
     this.message,
