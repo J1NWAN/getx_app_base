@@ -7,10 +7,4 @@ class HomeController extends GetxController {
   void increment() {
     _count.value++;
   }
-
-  @override
-  void onClose() {
-    // 정리 로직
-    super.onClose();
-  }
 }

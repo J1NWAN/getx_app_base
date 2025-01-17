@@ -47,12 +47,12 @@ class ConfirmDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                title,
+                title.tr,
                 style: Get.textTheme.titleLarge,
               ),
               const SizedBox(height: 16),
               Text(
-                message,
+                message.tr,
                 style: Get.textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
@@ -61,7 +61,7 @@ class ConfirmDialog extends StatelessWidget {
                 children: [
                   Expanded(
                     child: CustomButton(
-                      text: cancelText ?? '취소'.tr,
+                      text: cancelText?.tr ?? '취소'.tr,
                       onPressed: () {
                         if (onCancel != null) onCancel!();
                         Get.back(result: false);
@@ -73,9 +73,11 @@ class ConfirmDialog extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: CustomButton(
-                      text: confirmText ?? '확인'.tr,
+                      text: confirmText?.tr ?? '확인'.tr,
                       onPressed: () {
-                        if (onConfirm != null) onConfirm!();
+                        if (onConfirm != null) {
+                          onConfirm!();
+                        }
                         Get.back(result: true);
                       },
                     ),
