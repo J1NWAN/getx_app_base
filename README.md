@@ -26,6 +26,10 @@ GetX를 사용한 앱 기본 틀 작성
       - languages/
         - en_us.dart
         - ko_kr.dart
+    - utils/
+      - device_utils.dart
+      - dialog_utils.dart
+      - logger.dart
   - data/
     - services/
       - storage_service.dart
