@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:getx_app_base/app/core/theme/theme_controller.dart';
+import 'package:getx_app_base/app/core/utils/device_utils.dart';
+import 'package:getx_app_base/app/core/utils/logger.dart';
 import 'package:getx_app_base/app/data/services/storage_service.dart';
 import 'package:getx_app_base/app/core/theme/app_themes.dart';
-import 'package:getx_app_base/app/modules/theme_test/theme_test_page.dart';
 import 'package:getx_app_base/app/routes/app_pages.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:getx_app_base/app/core/translations/app_translations.dart';
 import 'package:getx_app_base/app/core/controllers/language_controller.dart';
 
@@ -16,6 +16,11 @@ void main() async {
   Get.put(StorageService());
   Get.put(ThemeController());
   Get.put(LanguageController());
+
+  Logger.info('DeviceId: ${await DeviceUtils.getDeviceId()}');
+  Logger.info('DeviceName: ${await DeviceUtils.getDeviceName()}');
+  Logger.info('AppVersion: ${await DeviceUtils.getAppVersion()}');
+
   runApp(const MyApp());
 }
 
