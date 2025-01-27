@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_app_base/app/core/widgets/buttons/custom_button.dart';
+import '../buttons/custom_button.dart';
 
 // 입력 필드의 속성을 정의하는 클래스
 class InputField {
   final String label; // 입력 필드의 레이블
   final String? hintText; // 입력 필드의 힌트 텍스트
-  final String? initialValue; // 초기값
+  final String? initialValue; // 초기 값
   final TextInputType? keyboardType; // 키보드 타입
   final bool isRequired; // 필수 입력 여부
+  final bool obscureText; // 텍스트 숨김 여부 (비밀번호 등)
+  final bool showPasswordToggle; // 비밀번호 표시/숨김 토글 버튼 표시 여부
 
   InputField({
     required this.label,
@@ -16,6 +18,8 @@ class InputField {
     this.initialValue,
     this.keyboardType,
     this.isRequired = false,
+    this.obscureText = false,
+    this.showPasswordToggle = false,
   });
 }
 
@@ -30,8 +34,10 @@ class InputDialog extends StatelessWidget {
   final VoidCallback? onConfirm; // 확인 버튼 콜백
   final VoidCallback? onCancel; // 취소 버튼 콜백
 
-  // 각 입력 필드의 컨트롤러를 저장하는 리스트
+  // 입력 필드들의 컨트롤러 목록
   final List<TextEditingController> _controllers = [];
+  // 비밀번호 표시/숨김 상태 관리 목록
+  final List<RxBool> _obscureTextList = [];
 
   InputDialog({
     super.key,
@@ -46,6 +52,7 @@ class InputDialog extends StatelessWidget {
   }) {
     for (var field in fields) {
       _controllers.add(TextEditingController(text: field.initialValue ?? ''));
+      _obscureTextList.add(field.obscureText.obs);
     }
   }
 
@@ -67,13 +74,26 @@ class InputDialog extends StatelessWidget {
               fields.length,
               (index) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: TextField(
-                  controller: _controllers[index],
-                  keyboardType: fields[index].keyboardType,
-                  decoration: InputDecoration(
-                    labelText: fields[index].label,
-                    hintText: fields[index].hintText,
-                    border: const OutlineInputBorder(),
+                child: Obx(
+                  () => TextField(
+                    controller: _controllers[index],
+                    keyboardType: fields[index].keyboardType,
+                    obscureText: _obscureTextList[index].value,
+                    decoration: InputDecoration(
+                      labelText: fields[index].label,
+                      hintText: fields[index].hintText,
+                      border: const OutlineInputBorder(),
+                      suffixIcon: fields[index].showPasswordToggle
+                          ? IconButton(
+                              icon: Icon(
+                                _obscureTextList[index].value ? Icons.visibility_off : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                _obscureTextList[index].value = !_obscureTextList[index].value;
+                              },
+                            )
+                          : null,
+                    ),
                   ),
                 ),
               ),
