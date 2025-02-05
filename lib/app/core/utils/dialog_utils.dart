@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app_base/app/core/widgets/dialogs/custom_date_picker.dart';
 import '../widgets/dialogs/confirm_dialog.dart';
 import '../widgets/dialogs/loading_dialog.dart';
 
@@ -38,5 +39,28 @@ class DialogUtils {
     if (Get.isDialogOpen ?? false) {
       Get.back();
     }
+  }
+
+  // Bottom Date Picker
+  static Future<void> showBottomDatePicker({
+    DateTime? initialDate,
+    DateTime? minimumDate,
+    DateTime? maximumDate,
+    Function(DateTime)? onDateTimeChanged,
+    String? confirmText,
+    String? cancelText,
+  }) {
+    return Get.bottomSheet(
+      CustomDatePicker(
+        initialDate: initialDate,
+        minimumDate: minimumDate,
+        maximumDate: maximumDate,
+        onDateTimeChanged: onDateTimeChanged,
+        confirmText: confirmText,
+        cancelText: cancelText,
+      ),
+      isScrollControlled: true,
+      enableDrag: true,
+    );
   }
 }
